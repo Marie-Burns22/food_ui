@@ -1,6 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import {Form, Button} from 'react-bootstrap'
 import DailyFoodCard from './DailyFoodCard';
+import uuid from "uuid";
 
 export default function DietLogForm(){
     const [monday, setMonday] = useState([]);
@@ -61,6 +62,7 @@ export default function DietLogForm(){
         let foodObject = {};
         foodObject["food"] = selectedFood;
         foodObject["servings"] = servings;
+        foodObject["id"] = uuid.v4()
         return foodObject;
     }
     return(
