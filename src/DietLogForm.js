@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Form, CardGroup, Button} from 'react-bootstrap'
+import {Form, Button} from 'react-bootstrap'
 import DailyFoodCard from './DailyFoodCard';
 
 export default function DietLogForm(){
@@ -11,11 +11,9 @@ export default function DietLogForm(){
     const [saturday, setSaturday] = useState([]);
     const [sunday, setSunday] = useState([]);
     const [selectedFood, setSelectedFood] = useState(null);
-    const [selectedDay, setSelectedDay] = useState(null);
     const [servings, setServings] = useState(0);
 
     const foods = [{ name: "Cheese, natural, conventional, WI, USA", carbon: 9.84, category: "Dairy"}, {name: "Atlantic Salmon, farmed, Norway", carbon: 1.89, category: "Seafood"}];
-    const days = ["Monday", "Tuesday", "Wednesday","Thursday", "friday", "saturday", "sunday"]
 
     function handleChangeFood(e) {
         const foodName = e.target.value;
@@ -23,25 +21,47 @@ export default function DietLogForm(){
         setSelectedFood(food);
     };
 
-    function handleChangeDay(e) {
-        setSelectedDay(e.target.value);
-    };
-
     const addMonday = () => {
         let foodObject = makeFoodObject();
         let newMonday = [...monday, foodObject]
-        console.log("in add Monday", foodObject);
-        console.log("new Monday", newMonday);
         setMonday(newMonday);
-        console.log(monday)
     }
 
+    const addTuesday = () => {
+        let foodObject = makeFoodObject();
+        let newDayArray = [...tuesday, foodObject]
+        setTuesday(newDayArray);
+    }
+    const addWednesday = () => {
+        let foodObject = makeFoodObject();
+        let newDayArray = [...wednesday, foodObject]
+        setWednesday(newDayArray);
+    }
+    const addThursday = () => {
+        let foodObject = makeFoodObject();
+        let newDayArray = [...thursday, foodObject]
+        setThursday(newDayArray);
+    }
+    const addFriday = () => {
+        let foodObject = makeFoodObject();
+        let newDayArray = [...friday, foodObject]
+        setFriday(newDayArray);
+    }
+    const addSaturday = () => {
+        let foodObject = makeFoodObject();
+        let newDayArray = [...saturday, foodObject]
+        setSaturday(newDayArray);
+    }
+    const addSunday = () => {
+        let foodObject = makeFoodObject();
+        let newDayArray = [...sunday, foodObject]
+        setSunday(newDayArray);
+    }
     const makeFoodObject = () => {
         let foodObject = {};
         foodObject["food"] = selectedFood;
         foodObject["servings"] = servings;
         return foodObject;
-        console.log("in makeFood", foodObject);
     }
     return(
 
@@ -61,19 +81,6 @@ export default function DietLogForm(){
                     </Form.Control>
                 </Form.Group>
 
-                {/* <Form.Group controlId="foodForm.category" >
-                    <Form.Label>Day of the Week</Form.Label>
-                    <Form.Control
-                        required
-                        as="select"
-                        onChange={handleChangeDay}
-                        multiple>
-                            {days.map(day => (
-                                <option key={day} name='day' value={day}>{day}</option>
-                            ))}
-                    </Form.Control> */}
-                {/* </Form.Group> */}
-
                 <Form.Group controlId="foodForm.emissionsAmount" >
                     <Form.Label>Servings (examples: 0.5, 1, 1.25)</Form.Label>
                     <Form.Control
@@ -86,9 +93,26 @@ export default function DietLogForm(){
                 <Button variant="primary" onClick={addMonday} >
                     Add to Monday
                 </Button>
+                <Button variant="info" onClick={addTuesday} >
+                    Add to Tuesday
+                </Button>
+                <Button variant="success" onClick={addWednesday} >
+                    Add to Wednesday
+                </Button>
+                <Button variant="secondary" onClick={addThursday} >
+                    Add to Thursday
+                </Button>
+                <Button variant="danger" onClick={addFriday} >
+                    Add to Friday
+                </Button>
+                <Button variant="warning" onClick={addSaturday} >
+                    Add to Saturday
+                </Button>
+                <Button variant="dark" onClick={addSunday} >
+                    Add to Sunday
+                </Button>
             </Form>
 
-        <CardGroup>
             <DailyFoodCard day="Sunday" dailyDiet={sunday} />
             <br />
             <DailyFoodCard day="Monday" dailyDiet={monday} />
@@ -103,7 +127,7 @@ export default function DietLogForm(){
             <br />
             <DailyFoodCard day="Saturday" dailyDiet={saturday} />
             <br />
-        </CardGroup>
+
         </Fragment>
 
     )
