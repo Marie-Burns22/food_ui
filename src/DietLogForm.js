@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Form, CardGroup} from 'react-bootstrap'
+import {Form, CardGroup, Button} from 'react-bootstrap'
 import DailyFoodCard from './DailyFoodCard';
 
 export default function DietLogForm(){
@@ -15,7 +15,7 @@ export default function DietLogForm(){
     const [servings, setServings] = useState(0);
 
     const foods = [{ name: "Cheese, natural, conventional, WI, USA", carbon: 9.84, category: "Dairy"}, {name: "Atlantic Salmon, farmed, Norway", carbon: 1.89, category: "Seafood"}];
-    const days = ["monday", "tuesday", "wednesday","thursday", "friday", "saturday", "sunday"]
+    const days = ["Monday", "Tuesday", "Wednesday","Thursday", "friday", "saturday", "sunday"]
 
     function handleChangeFood(e) {
         const foodName = e.target.value;
@@ -27,6 +27,22 @@ export default function DietLogForm(){
         setSelectedDay(e.target.value);
     };
 
+    const addMonday = () => {
+        let foodObject = makeFoodObject();
+        let newMonday = [...monday, foodObject]
+        console.log("in add Monday", foodObject);
+        console.log("new Monday", newMonday);
+        setMonday(newMonday);
+        console.log(monday)
+    }
+
+    const makeFoodObject = () => {
+        let foodObject = {};
+        foodObject["food"] = selectedFood;
+        foodObject["servings"] = servings;
+        return foodObject;
+        console.log("in makeFood", foodObject);
+    }
     return(
 
         <Fragment>
@@ -45,7 +61,7 @@ export default function DietLogForm(){
                     </Form.Control>
                 </Form.Group>
 
-                <Form.Group controlId="foodForm.category" >
+                {/* <Form.Group controlId="foodForm.category" >
                     <Form.Label>Day of the Week</Form.Label>
                     <Form.Control
                         required
@@ -55,8 +71,8 @@ export default function DietLogForm(){
                             {days.map(day => (
                                 <option key={day} name='day' value={day}>{day}</option>
                             ))}
-                    </Form.Control>
-                </Form.Group>
+                    </Form.Control> */}
+                {/* </Form.Group> */}
 
                 <Form.Group controlId="foodForm.emissionsAmount" >
                     <Form.Label>Servings (examples: 0.5, 1, 1.25)</Form.Label>
@@ -67,7 +83,9 @@ export default function DietLogForm(){
                         value={servings}
                     />
                 </Form.Group>
-
+                <Button variant="primary" onClick={addMonday} >
+                    Add to Monday
+                </Button>
             </Form>
 
         <CardGroup>

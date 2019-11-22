@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { CardGroup, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import React from 'react';
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 export default function DailyFoodCard({dailyDiet, day}){
     
