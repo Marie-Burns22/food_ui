@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Form, CardGroup, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { CardGroup, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 export default function DailyFoodCard({dailyDiet, day}){
-    return(
-        
+    
+    return( 
         <Card style={{ width: '18rem' }}>
             <Card.Header>{day}</Card.Header>
             <ListGroup className="list-group-flush">
