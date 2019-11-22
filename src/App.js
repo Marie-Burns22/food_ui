@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import FoodForm from './FoodForm';
-import FoodList from './FoodList';
+
+import DietLogForm from './DietLogForm';
 
 function App() {
   return (
@@ -10,8 +10,7 @@ function App() {
       {/* <header className="App-header">
         
       </header> */}
-      <FoodForm />
-      <FoodList />
+      <DietLogForm />
     </div>
   );
 }
